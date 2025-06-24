@@ -1,0 +1,7 @@
+/candidate-backend/target/
+*.iml
+.idea/
+
+/candidate-app/node_modules/
+
+.DS_Store
