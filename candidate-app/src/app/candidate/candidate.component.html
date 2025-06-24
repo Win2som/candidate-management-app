@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
       <h3>Candidate List</h3>
       <button class="btn btn-success" (click)="openModal()">Add Candidate</button>
     </div>
@@ -75,7 +75,8 @@
           <div class="form-group mb-3">
             <select class="form-control" [(ngModel)]="newCandidate.position" name="position" #position="ngModel" required>
               <option value="" disabled selected>Select Position</option>
-              <option value="Developer">Developer</option>
+              <option value="Developer">Junior Developer</option>
+              <option value="Manager">Senior Developer</option>
               <option value="Tester">Tester</option>
               <option value="Manager">Manager</option>
             </select>
