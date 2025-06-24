@@ -1,0 +1,36 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-controls {
+  margin-top: 10px;
+}
+
+.pagination-controls .btn {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+}
+
+.page-info {
+  font-size: 0.85rem;
+  margin: 0 10px;
+}
+

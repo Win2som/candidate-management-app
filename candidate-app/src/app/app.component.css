@@ -1,0 +1,22 @@
+.container {
+  padding-bottom: 30px;
+}
+
+.custom-navbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.custom-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar-brand {
+  padding-left: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}

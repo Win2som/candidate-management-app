@@ -1,0 +1,89 @@
+<div class="center-container">
+  <div class="content mt-4">
+    <div *ngIf="successMessage || errorMessage" class="alert" [ngClass]="{'alert-success': successMessage, 'alert-danger': errorMessage}" role="alert">
+      <div class="d-flex justify-content-between">
+        <span>{{ successMessage || errorMessage }}</span>
+        <button type="button" class="close ml-2" (click)="closeAlert()">
+          <span>&times;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Candidate List</h3>
+      <button class="btn btn-success" (click)="openModal()">Add Candidate</button>
+    </div>
+
+    <table class="table table-bordered mt-2" *ngIf="candidates.length > 0; else noCandidatesTemplate">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Position</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of candidates">
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.position }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteCandidate(c.id)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noCandidatesTemplate>
+      <div class="text-center text-muted mt-5 mb-5">
+        No candidates found.
+      </div>
+    </ng-template>
+
+    <div class="mt-2 text-center pagination-controls">
+      <button class="btn btn-secondary btn-sm mr-2" (click)="prevPage()">Previous</button>
+      <span class="page-info">Page {{ page + 1 }} of {{ totalPages }}</span>
+      <button class="btn btn-secondary btn-sm ml-2" (click)="nextPage()">Next</button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="showModal" class="modal d-block" tabindex="-1" role="dialog" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+        <h5 class="modal-title">Add Candidate</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addCandidate()">
+          <div class="form-group mb-3">
+            <input class="form-control" placeholder="Name" [(ngModel)]="newCandidate.name" name="name" #name="ngModel" required>
+            <div *ngIf="name.invalid && name.touched" class="text-danger small">Name is required.</div>
+          </div>
+          <div class="form-group mb-3">
+            <input class="form-control" placeholder="Email" [(ngModel)]="newCandidate.email" name="email" #email="ngModel" required email>
+            <div *ngIf="email.invalid && email.touched" class="text-danger small">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <select class="form-control" [(ngModel)]="newCandidate.position" name="position" #position="ngModel" required>
+              <option value="" disabled selected>Select Position</option>
+              <option value="Developer">Developer</option>
+              <option value="Tester">Tester</option>
+              <option value="Manager">Manager</option>
+            </select>
+            <div *ngIf="position.invalid && position.touched" class="text-danger small">Position is required.</div>
+          </div>
+          <button class="btn btn-success mt-2" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
